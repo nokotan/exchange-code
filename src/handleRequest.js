@@ -1,5 +1,5 @@
 const qs = require('querystring');
-const fetch = require('node-fetch');
+const fetch = require('node-fetch-commonjs');
 
 const URL = 'https://github.com/login/oauth/access_token';
 const CLIENT_ID = process.env.CLIENT_ID;
