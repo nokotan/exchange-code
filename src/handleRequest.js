@@ -57,9 +57,8 @@ module.exports = async function handleRequest(req, res) {
   if (req.url == "/github/login/oauth/access_token") {
     try {
       const post = await readFormData(req, "form");
-      const input = JSON.parse(post.input);
 
-      if (!input["code"]) return showError(res, "code is missing!");
+      if (!post["code"]) return showError(res, "code is missing!");
 
       const fetchOption = {
         method: 'POST',
@@ -70,7 +69,7 @@ module.exports = async function handleRequest(req, res) {
         body: JSON.stringify({
           client_id: CLIENT_ID,
           client_secret: CLIENT_SECRET,
-          code: input["code"],
+          code: post["code"],
         })
       };
 
