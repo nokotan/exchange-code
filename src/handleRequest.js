@@ -74,7 +74,7 @@ module.exports = async function handleRequest(req, res) {
       };
 
       const response = await fetch(URL, fetchOption);
-      const content = await response.json();
+      const content = await response.text();
       res.writeHead(200);
       res.end(content);
     } catch (e) {
