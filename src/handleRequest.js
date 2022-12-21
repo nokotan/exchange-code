@@ -55,8 +55,6 @@ module.exports = async function handleRequest(req, res) {
   if (!CLIENT_SECRET) return showError(res, "server is misconfigured!");
 
   if (req.url == "/github/login/oauth/access_token") {
-    if (req.method != "POST") return notAllowed(res);
-    
     try {
       const post = await readFormData(req, "form");
       const input = JSON.parse(post.input);
@@ -72,7 +70,7 @@ module.exports = async function handleRequest(req, res) {
         body: JSON.stringify({
           client_id: CLIENT_ID,
           client_secret: CLIENT_SECRET,
-          code: TEMP_CODE,
+          code: input["code"],
         })
       };
 
